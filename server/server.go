@@ -25,14 +25,14 @@ func StartServer(port string) {
 	signal.Notify(stop, os.Interrupt)
 
 	go func() {
-		log.Printf("🚀 Сервер запущен на http://localhost:%s", port)
+		log.Printf("Сервер запущен на http://localhost:%s", port)
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("Ошибка запуска сервера: %v", err)
 		}
 	}()
 
 	<-stop
-	log.Println("📴 Завершаем работу сервера...")
+	log.Println("Завершаем работу сервера...")
 
 	// Контекст с таймаутом для graceful shutdown
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
@@ -42,7 +42,7 @@ func StartServer(port string) {
 		log.Fatalf("Ошибка при завершении работы: %v", err)
 	}
 
-	log.Println("✅ Сервер завершил работу.")
+	log.Println("Сервер завершил работу.")
 }
 
 // logMiddleware логирует запросы
